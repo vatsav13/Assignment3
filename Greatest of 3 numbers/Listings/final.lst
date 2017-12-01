@@ -1,0 +1,95 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 PRESERVE8
+    2 00000000                 THUMB
+    3 00000000                 AREA             appcode, CODE, READONLY
+    4 00000000                 EXPORT           __main
+    5 00000000                 ENTRY
+    6 00000000         __main  FUNCTION
+    7 00000000 F04F 010E       MOV              r1,#14
+    8 00000004 F04F 020F       MOV              r2,#15
+    9 00000008 F04F 030C       MOV              r3,#12
+   10 0000000C 4291    loop0   CMP              r1,r2
+   11 0000000E D303            BCC              loop1
+   12 00000010 4299            CMP              r1,r3
+   13 00000012 D305            BCC              loop3
+   14 00000014 460C            MOV              r4,r1
+   15 00000016 DCF9            BGT              loop0
+   16 00000018 429A    loop1   CMP              r2,r3
+   17 0000001A D301            BCC              loop3
+   18 0000001C 4614            MOV              r4,r2
+   19 0000001E DCFB            BGT              loop1
+   20 00000020 461C    loop3   MOV              r4,r3
+   21 00000022 DCFD            BGT              loop3
+   22 00000024 E7FE    stop    B                stop        ; stop program
+   23 00000026                 ENDFUNC
+   24 00000026                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
+erwork --depend=.\objects\final.d -o.\objects\final.o -I.\RTE\_Target_1 -IC:\Us
+ers\User\Desktop\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Users\User\Desktop\ARM\CMSI
+S\5.0.1\Device\ARM\ARMCM4\Include --predefine="__EVAL SETA 1" --predefine="__UV
+ISION_VERSION SETA 524" --predefine="_RTE_ SETA 1" --predefine="ARMCM4_FP SETA 
+1" --list=.\listings\final.lst final.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 6 in file final.s
+   Uses
+      At line 4 in file final.s
+Comment: __main used once
+appcode 00000000
+
+Symbol: appcode
+   Definitions
+      At line 3 in file final.s
+   Uses
+      None
+Comment: appcode unused
+loop0 0000000C
+
+Symbol: loop0
+   Definitions
+      At line 10 in file final.s
+   Uses
+      At line 15 in file final.s
+Comment: loop0 used once
+loop1 00000018
+
+Symbol: loop1
+   Definitions
+      At line 16 in file final.s
+   Uses
+      At line 11 in file final.s
+      At line 19 in file final.s
+
+loop3 00000020
+
+Symbol: loop3
+   Definitions
+      At line 20 in file final.s
+   Uses
+      At line 13 in file final.s
+      At line 17 in file final.s
+      At line 21 in file final.s
+
+stop 00000024
+
+Symbol: stop
+   Definitions
+      At line 22 in file final.s
+   Uses
+      At line 22 in file final.s
+Comment: stop used once
+6 symbols
+341 symbols in table
