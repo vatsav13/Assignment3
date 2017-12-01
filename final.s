@@ -4,18 +4,14 @@
      EXPORT __main
 	 ENTRY 
 __main  FUNCTION		 
-        MOV r1,#0
-		MOV r2,#1
-		MOV r4,#10; no of terms to be in the series
-		MOV r5,#0x20000000; starting address of the series
-loop	CMP r4,#1
-		ADDS r3,r1,r2; adding the values in the two registers r1,r2 and storingin r3
-		MOV r1,r2
-		MOV r2,r3
-		SUBGT r4,r4,#1; subtract if greater than
-		STR r3,[r5]
-        ADD r5,r5,#4
-		BGT loop; if branch is greater then loop always
+    MOV r1,#28
+	MOV r2,#21
+loop	CMP r1,r2; comparing two numbers in this case 28,21
+	SUBGT r1,r1,r2; subtract r1 from r2 if greater than
+	MOV r3,r1
+	SUBLT r2,r2,r1; subtract r2 from r1 if less than
+	MOV r3,r1; result is stored in r3
+	BNE loop; unless branch is not equal to loop always
 stop B stop ; stop program
      ENDFUNC
      END
