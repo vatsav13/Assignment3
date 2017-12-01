@@ -2,23 +2,22 @@
      THUMB
      AREA     appcode, CODE, READONLY
      EXPORT __main
-	 ENTRY 
-__main  FUNCTION		 
-    MOV r1,#14
-	MOV r2,#15
-	MOV r3,#12
-loop0	CMP r1,r2; comparing the initial two numbers considered 14,15
-	BCC loop1; if carry is produced on subtraction go to loop1
-	CMP r1,r3
-	BCC loop3; comparing values 14, 12, if carry is produced on subtraction then go to loop3
-	MOV r4,r1
-	BGT loop0; if branch is greater then loop always
-loop1 CMP r2,r3
-	BCC loop3; on comparing 15,12 if carry is produced on subtraction go to loop3
-	MOV r4,r2
-	BGT loop1
-loop3 MOV r4,r3; on running the program, greatest number is present in r4
-	BGT loop3
-stop B stop ; stop program
-     ENDFUNC
-     END
+ENTRY 
+__main  FUNCTION
+MVF f1, #8.0;x-Number to find e^x
+MVF f2, #15.0;Number of terms
+MVF f3, #1.0;count
+MVF f4, #1.0; temp
+MVF f5, #1.0; temporary_result
+Series:
+CMFSZ f2, f3
+BLT stop
+DVFSZ f6, f1, f3
+MUFSZ f4, f4, f6
+ADF f5, f5, f4
+FIXSZ r0, f5; Conversion of result in normal binary format(integer)
+ADF f3, f3, #1.0;
+B Series;  always loop
+stop B stop 
+ENDFUNC
+END
